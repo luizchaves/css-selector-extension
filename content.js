@@ -9,10 +9,19 @@ function clearActive() {
   }
 }
 
-function activeElements(selector) {
-  clearActive()
-  const elements = Array.from(document.querySelectorAll(selector))
+function activeElements(elements) {
   for (const node of elements) {
     node.setAttribute('style', 'background-color: rgb(204, 136, 136); border: 2px solid red;')
   }
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  clearActive()
+  if (request.selector) {
+    const elements = Array.from(document.querySelectorAll(request.selector))
+    activeElements(elements)
+    sendResponse({ length: elements.length })
+  } else {
+    sendResponse({ length: 0 })
+  }
+})

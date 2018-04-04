@@ -1,0 +1,16 @@
+body {
+  width: 300px;
+}
+
+div {
+  margin: 1rem 0;
+}
+
+div #selector {
+  width: 95%;
+  outline: none;
+}
+
+div #button {
+  width: 20%;
+}
